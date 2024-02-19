@@ -1,0 +1,64 @@
+{
+    "name": "dbt-dev-env",
+    "dockerComposeFile": "./docker-compose.yml",
+    "service": "local-dbt-env",
+    "runServices": ["local-dbt-env"],
+    "hostRequirements": {
+      "cpus": 4,
+      "memory": "8gb",
+      "storage": "30gb"
+      },
+    "workspaceFolder": "/devcontainer",
+    "shutdownAction": "none",
+    "customizations": {
+      "vscode": {
+      "settings": {
+        "extensions.verifySignature": false,
+        "python.interpreter.infoVisibility": "always",
+        "python.defaultInterpreterPath": "/usr/local/bin/python",
+        "dbt.dbtPythonPathOverride": "/usr/local/bin/python",
+        "files.associations": {
+          "*.sql": "jinja-sql",
+          "*.md": "jinja-md"
+        }, 
+        "[yaml]": {
+          "editor.defaultFormatter": "redhat.vscode-yaml",
+          "editor.formatOnSave": true
+        },
+        "yaml.schemas": {
+            "https://raw.githubusercontent.com/dbt-labs/dbt-jsonschema/main/schemas/dbt_yml_files.json": [
+                "/**/*.yml",
+                "!profiles.yml",
+                "!dbt_project.yml",
+                "!packages.yml",
+                "!selectors.yml",
+                "!profile_template.yml"
+            ],
+            "https://raw.githubusercontent.com/dbt-labs/dbt-jsonschema/main/schemas/dbt_project.json": [
+                "dbt_project.yml"
+            ],
+            "https://raw.githubusercontent.com/dbt-labs/dbt-jsonschema/main/schemas/selectors.json": [
+                "selectors.yml"
+            ],
+            "https://raw.githubusercontent.com/dbt-labs/dbt-jsonschema/main/schemas/packages.json": [
+                "packages.yml"
+            ]
+        },
+        "workbench.colorTheme": "GitHub Dark",
+        },
+        "extensions": [
+          "innoverio.vscode-dbt-power-user",
+          "eamodio.gitlens",
+          "samuelcolvin.jinjahtml",
+          "oderwat.indent-rainbow",
+          "redhat.vscode-yaml",
+          "GitHub.github-vscode-theme",
+          "mechatroner.rainbow-csv",
+          "usernamehw.errorlens"
+        ]
+      } 
+    },
+    "initializeCommand": "echo 'Welcome to the DBT development environment!'",
+    "postCreateCommand": "python /dev/init/init.py",
+    "privileged": true
+  }

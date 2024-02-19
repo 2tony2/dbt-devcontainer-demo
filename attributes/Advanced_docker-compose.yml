@@ -13,7 +13,7 @@ volumes:
   local-dbt-env-shell-history: # This basically let's docker auto-manage this volume.
 
 services:
-  curative-local-dbt-env:
+  local-dbt-env:
     profiles:
       - development
     platform: linux/amd64 # We force the platform for consistency.
