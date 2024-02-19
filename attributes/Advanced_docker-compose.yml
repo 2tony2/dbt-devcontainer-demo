@@ -1,5 +1,14 @@
 version: '3'
 
+networks:
+  local_dev_network:
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+        - subnet: 172.23.0.0/16
+          gateway: 172.23.0.1
+
 volumes:
   local-dbt-env-shell-history: # This basically let's docker auto-manage this volume.
 
@@ -18,3 +27,10 @@ services:
     # Overrides default command so things don't shut down after the process ends.
     command: /bin/zsh -c "while sleep 1000; do :; done"
     env_file: devcontainer.env
+    ports:
+      - "60000-60010:60000-60010" # port forward the port range reserved for dynamic port use.
+    networks:
+      local_dev_network:
+        ipv4_address: 172.23.0.2  # We assign a static ip for more stable functionality of the python snowflake connector authentication.
+    environment:
+      - SF_AUTH_SOCKET_ADDR=172.23.0.2 # this forces the snowflake connector to use the static ip we assigned to the container as the recipient of the SSO token.
