@@ -44,7 +44,7 @@
                 "packages.yml"
             ]
         },
-        "workbench.colorTheme": "GitHub Dark",
+        "workbench.colorTheme": "GitHub Dark"
         },
         "extensions": [
           "innoverio.vscode-dbt-power-user",
