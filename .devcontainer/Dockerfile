@@ -34,7 +34,7 @@ COPY ./requirements.txt /devcontainer/requirements.txt
 
 # Install python packages
 RUN pip install --upgrade pip --disable-pip-version-check
-RUN pip install -r /init/requirements.txt --disable-pip-version-check
+RUN pip install -r /devcontainer/requirements.txt --disable-pip-version-check
 
 # The following will persist shell history between sessions
 RUN SNIPPET="export PROMPT_COMMAND='history -a' && export HISTFILE=/commandhistory/.bash_history" \

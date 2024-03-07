@@ -1,6 +1,6 @@
 {
     "name": "dbt-dev-env",
-    "dockerComposeFile": "./docker-compose.yml",
+    "dockerComposeFile": "./docker-compose.yaml",
     "service": "local-dbt-env",
     "runServices": ["local-dbt-env"],
     "hostRequirements": {
